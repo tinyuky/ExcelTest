@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
 use File;
 use Excel;
+use App\Students;
 
 
 
@@ -22,7 +23,9 @@ class ExcelController extends Controller
         Storage::disk('public_upload')->put($name_of_file, File::get($file));   
         $data = Excel::load('public\uploads\excel\\'.$name_of_file, function($reader){
             $result = $reader->get();
-            $result[309]->dump();
+            $result->each(function($row){
+                
+            });
         });
     }
 }
